@@ -1,4 +1,18 @@
-export default function DisplayTodos({ todos, toggleTodo, deleteTodo }) {
+export default function DisplayTodos({ todos, setTodos }) {
+  
+  const toggleTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+  const deleteTodo = (id) => {
+    if (window.confirm("Are you sure you want to delete this todo?")) {
+      setTodos(todos.filter((todo) => todo.id !== id));
+    }
+  };
+
   return (
     <div className="mt-3">
       <ul className="mini-container list-group">
