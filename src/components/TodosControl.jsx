@@ -1,54 +1,24 @@
-import { useState } from "react";
-import useStore from "../store/useStore";
-
-const TodosControl = () => {
-  const addTodo = useStore((state) => state.addTodo);
-  const [text, setText] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (text.trim()) {
-      addTodo(text);
-      setText("");
-    }
-  }
-
+export default function TodosControl({ handleAddTodo, todoText, setTodoText }) {
   return (
-    <div>
-      <h2>Add New Todo</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-          <input
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Enter a new todo..."
-            style={{
-              flex: 1,
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "5px",
-              fontSize: "16px",
-            }}
-          />
-          <button 
-            type="submit"
-            style={{
-              backgroundColor: "#4CAF50",
-              color: "white",
-              border: "none",
-              padding: "10px 20px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              fontSize: "16px",
-            }}
-          >
-            Add
-          </button>
-        </div>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-start py-1">
+      <form
+        onSubmit={handleAddTodo}
+        className="d-flex mini-container d-flex justify-content-between"
+      >
+        <input
+          type="text"
+          className="form-control form-control-sm"
+          placeholder="Todo Text"
+          onChange={(e) => setTodoText(e.target.value)}
+          value={todoText}
+        />
+        <button
+          className="btn btn-outline-light btn-sm px-2 mx-1"
+          type="submit"
+        >
+          <i className="fa-solid fa-plus"></i>
+        </button>
       </form>
-    </div>
+    </nav>
   );
-};
-
-export default TodosControl; 
+}

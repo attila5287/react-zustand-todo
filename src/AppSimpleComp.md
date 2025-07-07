@@ -1,11 +1,10 @@
+```jsx
 import { useState } from "react";
 import "bootswatch/dist/quartz/bootstrap.min.css";
 import "./App.css";
 import DisplayTodos from "./components/DisplayTodos";
 import TodosControl from "./components/TodosControl";
 function App() {
-  const [todoText, setTodoText] = useState("");
-  const [completed, setCompleted] = useState(false);
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -13,6 +12,8 @@ function App() {
       completed: false,
     },
   ]);
+  const [todoText, setTodoText] = useState("");
+  const [completed, setCompleted] = useState(false);
 
   const handleAddTodo = (e) => {
     e.preventDefault();
@@ -44,3 +45,6 @@ function App() {
   );
 }
 export default App;
+
+
+```
