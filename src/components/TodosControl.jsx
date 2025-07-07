@@ -1,13 +1,16 @@
 import { useState } from "react";
 export default function TodosControl({ todos, setTodos }) {
   const [todoText, setTodoText] = useState("");
-
+  
+  const addTodo = (text) => {
+      const newTextTodo = { id: Date.now(), text: text, completed: false };
+      console.log(newTextTodo);
+      setTodos([...todos, newTextTodo]);
+      setTodoText("");
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTodo = { id: Date.now(), text: todoText, completed: false };
-    console.log(newTodo);
-    setTodos([...todos, newTodo]);
-    setTodoText("");
+    addTodo(todoText);
   };
   
   return (

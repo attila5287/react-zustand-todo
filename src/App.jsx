@@ -5,8 +5,7 @@ import DisplayTodos from "./components/DisplayTodos";
 import TodosControl from "./components/TodosControl";
 import { demoTodo } from "./data";
 function App() {
-  const [todos, setTodos] = useState([demoTodo]);
-
+  const [todos, setTodos] = useState(demoTodo());
 
   return (
     <>

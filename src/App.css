@@ -8,3 +8,6 @@
   text-decoration: line-through;
   color: #808080;
 }
+.btn-sm{
+  max-height: 32px;
+}

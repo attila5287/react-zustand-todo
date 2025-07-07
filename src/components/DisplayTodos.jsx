@@ -1,6 +1,9 @@
 export default function DisplayTodos({ todos, setTodos }) {
   
   const toggleTodo = (id) => {
+    console.log("toggleTodo clicked: ", id);
+    const clickedTodo = todos.find((todo) => todo.id === id);
+    console.log("completed stat before click: ", clickedTodo.completed);
     setTodos(
       todos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -8,14 +11,15 @@ export default function DisplayTodos({ todos, setTodos }) {
     );
   };
   const deleteTodo = (id) => {
+    console.log("deleteTodo clicked:", id);
     if (window.confirm("Are you sure you want to delete this todo?")) {
       setTodos(todos.filter((todo) => todo.id !== id));
     }
   };
 
   return (
-    <div className="mt-3">
-      <ul className="mini-container list-group">
+    <div className="mini-container mt-2">
+      <ul className="list-group">
         {todos.map((todo) => (
           <li className="list-group-item py-1 d-flex justify-content-between" key={todo.id}>
             <span className={todo.completed ? "text-decoration-line-through" : ""}>{todo.text}</span>
