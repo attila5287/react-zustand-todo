@@ -1,22 +1,7 @@
-export default function DisplayTodos({ todos, setTodos }) {
-  
-  const toggleTodo = (id) => {
-    console.log("toggleTodo clicked: ", id);
-    const clickedTodo = todos.find((todo) => todo.id === id);
-    console.log("completed stat before click: ", clickedTodo.completed);
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
-  };
-  const deleteTodo = (id) => {
-    console.log("deleteTodo clicked:", id);
-    if (window.confirm("Are you sure you want to delete this todo?")) {
-      setTodos(todos.filter((todo) => todo.id !== id));
-    }
-  };
+import useStore from "../store/useStore";
 
+export default function DisplayTodos() {
+  const { todos, toggleTodo, deleteTodo } = useStore();
   return (
     <div className="mini-container mt-2">
       <ul className="list-group">
@@ -36,4 +21,5 @@ export default function DisplayTodos({ todos, setTodos }) {
       </ul>
     </div>
   );
+
 }

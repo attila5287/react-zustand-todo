@@ -1,16 +1,16 @@
 import { useState } from "react";
-export default function TodosControl({ todos, setTodos }) {
+import useStore from "../store/useStore";
+
+export default function TodosControl() {
+  const { addTodo } = useStore();
   const [todoText, setTodoText] = useState("");
   
-  const addTodo = (text) => {
-      const newTextTodo = { id: Date.now(), text: text, completed: false };
-      console.log(newTextTodo);
-      setTodos([...todos, newTextTodo]);
-      setTodoText("");
-  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo(todoText);
+    if (todoText.trim()) {
+      addTodo(todoText);
+      setTodoText("");
+    }
   };
   
   return (

@@ -1,7 +1,8 @@
 import { create } from "zustand";
+import { demoTodo } from "../data";
 
 const useStore = create((set) => ({
-  todos: [],
+  todos: demoTodo(),
   addTodo: (text) =>
     set((state) => ({
       todos: [
@@ -20,9 +21,14 @@ const useStore = create((set) => ({
       ),
     })),
   deleteTodo: (id) =>
-    set((state) => ({
-      todos: state.todos.filter((todo) => todo.id !== id),
-    })),
+    set((state) => {
+      if(window.confirm("Are you sure you want to delete this todo?")){
+        return {
+          todos: state.todos.filter((todo) => todo.id !== id),
+        }
+      }
+      return state;
+    }),
 }));
 
 export default useStore; 
